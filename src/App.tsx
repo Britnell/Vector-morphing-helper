@@ -41,37 +41,18 @@ const square = `<svg
     />
   </svg>`;
 
-const rect = `<svg
-  width="200"
-  height="200"
-  viewBox="0 0 1187 1186"
-  fill="none"
-  xmlns="http://www.w3.org/2000/svg"
->
-  <rect width="300" height="100" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)" />
-</svg>`;
-
-const testShapes = `<svg 
-width="3200" height="1439" viewBox="0 0 3200 1439" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M593.5 254L1.5 846L593.5 1438L1185.5 846L593.5 254Z" stroke="black"/>
-<path d="M1996.5 794.5C1989 531 2185 193 2597.5 193C3010 193 3199 481.5 3199 794.5C3199 1107.5 2896.5 1396 2597.5 1396C2298.5 1396 1996 1111 1996 794.5" stroke="black"/>
-<rect x="806" width="421" height="415" fill="#D9D9D9"/>
-<ellipse cx="1628.5" cy="600.5" rx="212.5" ry="392.5" fill="#D9D9D9"/>
-</svg>`;
-
 function App() {
   const [inputs, setInputs] = useState({
-    a: play,
-    b: pause,
+    a: circle,
+    b: square,
     inva: false,
     invb: false,
   });
 
-  console.log({ inputs });
-
   const svgA = formatSVG(inputs.a, inputs.inva);
   const svgB = formatSVG(inputs.b, inputs.invb);
 
+  if (inputs.inva) svgA;
   makeEqual(svgA, svgB);
 
   return (
@@ -196,8 +177,8 @@ const formatSVG = (svgstring: string, invert: boolean) => {
 
     // format path.d
     let formatted = formatPath(element);
-    if (invert) formatted = formatted.reverse();
-    // if (element.attributes.hasOwnProperty("p"))
+    // TODO - reverse here?
+
     element.attributes.d.value = formatted.toString();
 
     // add formated to element
