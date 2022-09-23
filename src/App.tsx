@@ -146,6 +146,10 @@ const makeEqual = (svgA: HTMLElement, svgB: HTMLElement) => {
     while (shA.segments.length > shB.segments.length) {
       shB.segments.push(emptyNode);
     }
+
+    shapes.a[s].attributes.d.value = shA.toString();
+    shapes.b[s].attributes.d.value = shB.toString();
+
     svgA.appendChild(shapes.a[s]);
     svgB.appendChild(shapes.b[s]);
   }

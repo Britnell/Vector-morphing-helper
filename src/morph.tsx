@@ -38,6 +38,7 @@ export default function Morph({ shapeA, shapeB }: any) {
         />
         {[0, 0].map((_, i) => (
           <animated.path
+            key={i}
             d={x.to({
               range: [0, 1],
               output: [paths.a[i], paths.b[i]],
